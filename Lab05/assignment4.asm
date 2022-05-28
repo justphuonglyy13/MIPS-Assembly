@@ -12,7 +12,7 @@ mes_err:	.asciiz	"Invalid string"
 	la 	$a1, y
 	la	$a2, 100
 	syscall
-	beq 	$a1, $0, strcpy
+	beq 	$a1, $0, strcpy				#check status value if != 0 (OK)
 	li 	$v0, 59
 	la	$a0, mes_err
 	syscall
