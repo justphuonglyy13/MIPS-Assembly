@@ -5,13 +5,18 @@ y: 	.space	100 					# source string y
 mes_in:	.asciiz	"Enter the string to copy: "
 mes_out: 	.asciiz	"String copied: "
 mes_lgth:	.asciiz	"Length of string: "
-
+mes_err:	.asciiz	"Invalid string"
 .text
 	li	$v0, 54	
 	la	$a0, mes_in
 	la 	$a1, y
 	la	$a2, 100
 	syscall
+	beq 	$a1, $0, strcpy
+	li 	$v0, 59
+	la	$a0, mes_err
+	syscall
+	j exit
 strcpy:
 	la	$a0, x					# a0 = destination string x
 	la	$a1, y					# a1 = source string y
@@ -29,7 +34,7 @@ L1:
 	j 	L1						#next character
 	nop
 end_of_strcpy:	
-	li	$v0, 59	
+	li	$v0, 59
 	la	$a1, 0($a0)
 	la	$a0, mes_out
 	syscall
