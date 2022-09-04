@@ -21,7 +21,7 @@ str1_input:
 	syscall
 	j exit
 str1_copy:
-	la	$s0, s1	
+	la	$s0, s1					#$s0 = str1
 str2_input:
 	li	$v0, 54	
 	la	$a0, mes_2
@@ -34,7 +34,7 @@ str2_input:
 	syscall
 	j exit
 str2_copy:
-	la	$s1, s2
+	la	$s1, s2					#$s1 = str2
 function_calling:
 	j	commonCharacterCount
 commonCharacterCount:
